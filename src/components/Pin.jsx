@@ -28,7 +28,7 @@ const Pin = ({ pin: { postedBy, image, _id, save }}) => {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:4000/api/v1/user/getUserInfo/${postedBy}`)
+            .get(`${process.env.REACT_BACKEND_URI}/api/v1/user/getUserInfo/${postedBy}`)
             .then((res) => {
                 setPostedByUser(res.data.userInfo)
             })
@@ -46,11 +46,11 @@ const Pin = ({ pin: { postedBy, image, _id, save }}) => {
         if (!alreadySaved) {
             setSavingPost(true);
             axios
-                .put('http://localhost:4000/api/v1/pins/savePin', { pinId: id, userId: user._id })
+                .put(`${process.env.REACT_BACKEND_URI}/api/v1/pins/savePin`, { pinId: id, userId: user._id })
                 .then((res) => {
                     setSavingPost(false);
                     axios
-                        .get('http://localhost:4000/api/v1/pins/getAllPins')
+                        .get(`${process.env.REACT_BACKEND_URI}/api/v1/pins/getAllPins`)
                         .then((res) => {
                             dispatch(setPins(res.data))
                         })
@@ -60,10 +60,10 @@ const Pin = ({ pin: { postedBy, image, _id, save }}) => {
 
     const deletePin = (id) => {
         axios
-            .delete('http://localhost:4000/api/v1/pins/delete', { data: { _id: id } })
+            .delete(`${process.env.REACT_BACKEND_URI}/api/v1/pins/delete`, { data: { _id: id } })
             .then((res) => {
                 axios
-                    .get('http://localhost:4000/api/v1/pins/getAllPins')
+                    .get(`${process.env.REACT_BACKEND_URI}/api/v1/pins/getAllPins`)
                     .then((res) => {
                         dispatch(setPins(res.data))
                     })

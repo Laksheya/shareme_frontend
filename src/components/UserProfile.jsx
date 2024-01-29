@@ -30,7 +30,7 @@ const UserProfile = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/api/v1/user/getUserInfo/${userId}`)
+      .get(`${process.env.REACT_BACKEND_URI}/api/v1/user/getUserInfo/${userId}`)
       .then((res) => {
         setCurrentUser(res.data.userInfo);
       })
@@ -39,13 +39,13 @@ const UserProfile = () => {
   useEffect(() => {
     if (text === 'Created') {
       axios
-        .get(`http://localhost:4000/api/v1/pins/getCreatedPins/${userId}`)
+        .get(`${process.env.REACT_BACKEND_URI}/api/v1/pins/getCreatedPins/${userId}`)
         .then((res) => {
           setPins(res.data.pins)
         })
     } else {
       axios
-        .get(`http://localhost:4000/api/v1/pins/getSavedPins/${userId}`)
+        .get(`${process.env.REACT_BACKEND_URI}/api/v1/pins/getSavedPins/${userId}`)
         .then((res) => {
           setPins(res.data.pins.filter((pin) => pin?.save.some(obj => obj.savedBy === user._id)))
         })

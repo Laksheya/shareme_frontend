@@ -25,7 +25,7 @@ const Login = () => {
         photo: picture
       }
 
-      const { data } = await axios.post('http://localhost:4000/api/v1/user/login', user, {
+      const { data } = await axios.post(`${process.env.REACT_BACKEND_URI}/api/v1/user/login`, user, {
         withCredentials: true
       });
 

@@ -42,21 +42,10 @@ const CreatePin = () => {
         const formData = new FormData();
         formData.append('file', selectedFile);
 
-        const {data} = await axios.post('http://localhost:4000/api/v1/pins/uploadImage', formData);
+        const {data} = await axios.post(`${process.env.REACT_BACKEND_URI}/api/v1/pins/uploadImage`, formData);
         console.log(data)
         setImageAsset(data)
         setLoading(false)
-        // console.log(imageAsset)
-      // client.assets
-
-      //   .upload('image', selectedFile, { contentType: type, filename: name })
-      //   .then((document) => {
-      //     setImageAsset(document)
-      //     setLoading(false);
-      //   })
-      //   .catch((error) => {
-      //     console.log(error)
-      //   })
     } else {
       setWrongImageType(true);
     }
@@ -76,16 +65,11 @@ const CreatePin = () => {
         image: imageAsset?.url,
         imageId: imageAsset?.imageId
       }
-      const {data} = await axios.post('http://localhost:4000/api/v1/pins/createPin', doc);
+      const {data} = await axios.post(`${process.env.REACT_BACKEND_URI}/api/v1/pins/createPin`, doc);
       console.log(data)
       if(data.success) {
         navigate('/')
       }
-      console.log(doc)
-      // client.create(doc)
-      // .then(() => {
-      //   navigate('/')
-      // })
     } else {
       setFields(true);
 

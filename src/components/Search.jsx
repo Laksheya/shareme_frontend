@@ -25,7 +25,7 @@ const Search = ({ searchTerm }) => {
       //     setLoading(false)
       //   })
       axios
-        .get(`http://localhost:4000/api/v1/pins/searchPin/${searchTerm}`)
+        .get(`${process.env.REACT_BACKEND_URI}/api/v1/pins/searchPin/${searchTerm}`)
         .then((res) => {
           dispatch(setPins(res.data.pins))
           setLoading(false)
@@ -39,7 +39,7 @@ const Search = ({ searchTerm }) => {
       //     setLoading(false)
       //   })
       axios
-                .get('http://localhost:4000/api/v1/pins/getAllPins')
+                .get(`${process.env.REACT_BACKEND_URI}/api/v1/pins/getAllPins`)
                 .then((res) => {
                     setLoading(false)
                     dispatch(setPins(res.data))
