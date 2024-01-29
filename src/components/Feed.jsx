@@ -31,7 +31,7 @@ const Feed = () => {
 
         if(categoryId) {
             axios
-            .get(`${process.env.REACT_BACKEND_URI}/api/v1/pins/getSimilarPins/${categoryId}`)
+            .get(`${process.env.REACT_APP_BACKEND_URI}/api/v1/pins/getSimilarPins/${categoryId}`)
             .then((res) => {
               dispatch(setPins(res.data.pins))
               setLoading(false)
@@ -39,14 +39,14 @@ const Feed = () => {
 
         } else {
             axios
-                .get(`${process.env.REACT_BACKEND_URI}/api/v1/pins/getAllPins`)
+                .get(`${process.env.REACT_APP_BACKEND_URI}/api/v1/pins/getAllPins`)
                 .then((res) => {
                     setLoading(false)
                     dispatch(setPins(res.data))
                 })
         }
         axios
-            .get(`${process.env.REACT_BACKEND_URI}/api/v1/pins/getAllSaved`)
+            .get(`${process.env.REACT_APP_BACKEND_URI}/api/v1/pins/getAllSaved`)
             .then((res) => {
                 setSaved(res.data.saved)
             })

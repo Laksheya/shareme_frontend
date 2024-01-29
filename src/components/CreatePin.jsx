@@ -42,7 +42,7 @@ const CreatePin = () => {
         const formData = new FormData();
         formData.append('file', selectedFile);
 
-        const {data} = await axios.post(`${process.env.REACT_BACKEND_URI}/api/v1/pins/uploadImage`, formData);
+        const {data} = await axios.post(`${process.env.REACT_APP_BACKEND_URI}/api/v1/pins/uploadImage`, formData);
         console.log(data)
         setImageAsset(data)
         setLoading(false)
@@ -65,7 +65,7 @@ const CreatePin = () => {
         image: imageAsset?.url,
         imageId: imageAsset?.imageId
       }
-      const {data} = await axios.post(`${process.env.REACT_BACKEND_URI}/api/v1/pins/createPin`, doc);
+      const {data} = await axios.post(`${process.env.REACT_APP_BACKEND_URI}/api/v1/pins/createPin`, doc);
       console.log(data)
       if(data.success) {
         navigate('/')

@@ -8,6 +8,7 @@ import shareVideo from '../assets/share.mp4'
 import logo from '../assets/logo.png';
 
 const Login = () => {
+  console.log(process.env.REACT_APP_BACKEND_URI)
 
   const navigate = useNavigate()
 
@@ -25,7 +26,7 @@ const Login = () => {
         photo: picture
       }
 
-      const { data } = await axios.post(`${process.env.REACT_BACKEND_URI}/api/v1/user/login`, user, {
+      const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_URI}/api/v1/user/login`, user, {
         withCredentials: true
       });
 

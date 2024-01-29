@@ -29,14 +29,14 @@ const PinDetail = () => {
     if (comment) {
       setAddingComment(true)
       console.log(comment, pinId)
-      axios.put(`${process.env.REACT_BACKEND_URI}/api/v1/pins/addComment`, {
+      axios.put(`${process.env.REACT_APP_BACKEND_URI}/api/v1/pins/addComment`, {
         comment,
         pinId,
         userId: user._id
       }).then((res) => {
         setAddingComment(false)
         axios
-          .get(`${process.env.REACT_BACKEND_URI}/api/v1/pins/getPinDetail/${pinId}`)
+          .get(`${process.env.REACT_APP_BACKEND_URI}/api/v1/pins/getPinDetail/${pinId}`)
           .then((res) => {
             setPinDetail(res.data.pin);
           })
@@ -70,7 +70,7 @@ const PinDetail = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_BACKEND_URI}/api/v1/pins/getPinDetail/${pinId}`)
+      .get(`${process.env.REACT_APP_BACKEND_URI}/api/v1/pins/getPinDetail/${pinId}`)
       .then((res) => {
         setPinDetail(res.data.pin);
       })
@@ -82,7 +82,7 @@ const PinDetail = () => {
   useEffect(() => {
     if (pinDetail) {
       axios
-        .get(`${process.env.REACT_BACKEND_URI}/api/v1/user/getUserInfo/${pinDetail.postedBy}`)
+        .get(`${process.env.REACT_APP_BACKEND_URI}/api/v1/user/getUserInfo/${pinDetail.postedBy}`)
         .then((res) => {
           setPostedByUser(res.data.userInfo);
         })
@@ -94,7 +94,7 @@ const PinDetail = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_BACKEND_URI}/api/v1/pins/getComments/${pinId}`)
+      .get(`${process.env.REACT_APP_BACKEND_URI}/api/v1/pins/getComments/${pinId}`)
       .then((res) => {
         setComments(res.data.comments.comments)
       })
@@ -103,7 +103,7 @@ const PinDetail = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_BACKEND_URI}/api/v1/pins/getSimilarPins/${pinDetail?.category}`)
+      .get(`${process.env.REACT_APP_BACKEND_URI}/api/v1/pins/getSimilarPins/${pinDetail?.category}`)
       .then((res) => {
         const tempPins = res.data.pins.filter(pin => pin._id !== pinDetail._id)
         setPins(tempPins)
